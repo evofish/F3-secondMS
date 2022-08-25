@@ -1,0 +1,9 @@
+#!/bin/bash
+#Sequence trim with Trimmomatic
+
+for f1 in *_1.fastq.gz
+do
+f2=${f1%%_1.fastq.gz}"_2.fastq.gz"
+java -jar '/home/bernalma/Applications/Trimmomatic-0.36/trimmomatic-0.36.jar' PE -threads 14 -phred33 $f1 $f2 /data2/F3/F3-clean-reads/${f1%%_1.fastq.gz}"_1-paired.fastq.gz" /data2/F3/F3-clean-reads/${f1%%_1.fastq.gz}"_1-unpaired.fastq.gz" /data2/F3/F3-clean-reads/${f1%%_1.fastq.gz}"_2-paired.fastq.gz" /data2/F3/F3-clean-reads/${f1%%_1.fastq.gz}"_2-unpaired.fastq.gz" ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10 AVGQUAL:33 HEADCROP:10 SLIDINGWINDOW:5:25 MINLEN:55 
+done
+
